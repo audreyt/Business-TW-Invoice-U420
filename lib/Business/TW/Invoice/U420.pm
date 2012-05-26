@@ -22,21 +22,21 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-Business::TW::Invoice::U420->init_printer;
-my $u420 = Business::TW::U420->new
-    ({ heading => [ DateTime->now->ymd, '',
-                    'order: #232', ''],
-       lines_total     => 35,
-       lines_available => 18,
-       lines_stamp     => 5,
-       fh => \*STDOUT  });
+    use DateTime;
+    use Business::TW::Invoice::U420;
+    my $u420 = Business::TW::Invoice::U420->new
+        ({ heading => [ DateTime->now->ymd, '',
+                        'order: #232', ''],
+           lines_total     => 35,
+           lines_available => 18,
+           lines_stamp     => 5,
+           fh => \*STDOUT  });
+    $u420->init_printer;
+    $u420->println("123123") for 1..30;
+    $u420->cut;
 
-$u420->println("123123") for 1..30;
-$u420->cut;
-
-# to actually print to the printer, run:
-# perl your-program.pl > COM1
-
+    # to actually print to the printer, run:
+    # perl your-program.pl > COM1
 
 =head1 DESCRIPTION
 

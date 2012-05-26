@@ -6,14 +6,21 @@ VERSION
     Version 0.01
 
 SYNOPSIS
-    Business::TW::Invoice::U420->init_printer; my $u420 =
-    Business::TW::U420->new ({ heading => [ DateTime->now->ymd, '', 'order:
-    #232', ''], lines_total => 35, lines_available => 18, lines_stamp => 5,
-    fh => \*STDOUT });
+        use DateTime;
+        use Business::TW::Invoice::U420;
+        my $u420 = Business::TW::Invoice::U420->new
+            ({ heading => [ DateTime->now->ymd, '',
+                            'order: #232', ''],
+               lines_total     => 35,
+               lines_available => 18,
+               lines_stamp     => 5,
+               fh => \*STDOUT  });
+        $u420->init_printer;
+        $u420->println("123123") for 1..30;
+        $u420->cut;
 
-    $u420->println("123123") for 1..30; $u420->cut;
-
-    # to actually print to the printer, run: # perl your-program.pl > COM1
+        # to actually print to the printer, run:
+        # perl your-program.pl > COM1
 
 DESCRIPTION
     This module generates commands for the "Epson RP-U420 invoice" printer
@@ -74,16 +81,20 @@ SUPPORT
 
     You can also look for information at:
 
-    * AnnoCPAN: Annotated CPAN documentation
+    *   AnnoCPAN: Annotated CPAN documentation
+
         <http://annocpan.org/dist/Business-TW-Invoice-U420>
 
-    * CPAN Ratings
+    *   CPAN Ratings
+
         <http://cpanratings.perl.org/d/Business-TW-Invoice-U420>
 
-    * RT: CPAN's request tracker
+    *   RT: CPAN's request tracker
+
         <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Business-TW-Invoice-U420>
 
-    * Search CPAN
+    *   Search CPAN
+
         <http://search.cpan.org/dist/Business-TW-Invoice-U420>
 
 ACKNOWLEDGEMENTS
